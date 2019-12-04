@@ -42,7 +42,7 @@ struct RealmService: RealmServiceType {
             count = paginationIndex
         }
         
-        let rssItems = ((paginationIndex - paginationIndex)..<count).map { index -> RSSItem in
+        let rssItems = (0..<count).map { index -> RSSItem in
             return RSSItem(title: object.items[index].title,
                            description: object.items[index].itemDescription,
                            pubDate: object.items[index].pubDate)

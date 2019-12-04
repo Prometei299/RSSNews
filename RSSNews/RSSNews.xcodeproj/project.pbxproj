@@ -205,6 +205,7 @@
 		342BBC4C23955B0100A3F9C4 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				34AF2A8323959B3E0063286F /* RealmServiceType.swift */,
 				342BBC4D23955C0500A3F9C4 /* ViewModelType.swift */,
 			);
 			path = Protocols;
@@ -265,7 +266,6 @@
 		34AF2A8023959B0C0063286F /* RealmService */ = {
 			isa = PBXGroup;
 			children = (
-				34AF2A8323959B3E0063286F /* RealmServiceType.swift */,
 				34AF2A8123959B310063286F /* RealmService.swift */,
 			);
 			path = RealmService;
