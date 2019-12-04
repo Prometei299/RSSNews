@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="E6l-8Y-lRQ">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Live News And Analystics View Controller-->
+        <scene sceneID="qM9-Hv-5vS">
+            <objects>
+                <viewController id="XMl-af-2fw" customClass="LiveNewsAndAnalysticsViewController" customModule="RSSNews" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ybA-yP-x51">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="67" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sGH-Fy-hfa">
+                                <rect key="frame" x="0.0" y="44" width="600" height="248.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ei-Lc-hsp">
+                                <rect key="frame" x="0.0" y="292.5" width="600" height="15"/>
+                                <color key="backgroundColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="KRE-hD-ure"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="67" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tck-wJ-54v">
+                                <rect key="frame" x="0.0" y="307.5" width="600" height="243.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Tck-wJ-54v" firstAttribute="trailing" secondItem="Gpl-t2-hcW" secondAttribute="trailing" id="33a-1I-hWk"/>
+                            <constraint firstItem="sGH-Fy-hfa" firstAttribute="trailing" secondItem="Gpl-t2-hcW" secondAttribute="trailing" id="4tB-cc-wMr"/>
+                            <constraint firstItem="Tck-wJ-54v" firstAttribute="leading" secondItem="Gpl-t2-hcW" secondAttribute="leading" id="7T8-37-NW4"/>
+                            <constraint firstItem="sGH-Fy-hfa" firstAttribute="leading" secondItem="Gpl-t2-hcW" secondAttribute="leading" id="GMK-0s-hDK"/>
+                            <constraint firstItem="sGH-Fy-hfa" firstAttribute="top" secondItem="Gpl-t2-hcW" secondAttribute="top" id="JQu-xf-Mun"/>
+                            <constraint firstItem="6Ei-Lc-hsp" firstAttribute="centerY" secondItem="ybA-yP-x51" secondAttribute="centerY" id="OIs-dY-Qjd"/>
+                            <constraint firstItem="6Ei-Lc-hsp" firstAttribute="leading" secondItem="sGH-Fy-hfa" secondAttribute="leading" id="OTT-xW-uHa"/>
+                            <constraint firstItem="Tck-wJ-54v" firstAttribute="top" secondItem="6Ei-Lc-hsp" secondAttribute="bottom" id="Qeb-rc-Aqk"/>
+                            <constraint firstItem="Gpl-t2-hcW" firstAttribute="bottom" secondItem="Tck-wJ-54v" secondAttribute="bottom" id="Z4k-kA-DpS"/>
+                            <constraint firstItem="6Ei-Lc-hsp" firstAttribute="centerX" secondItem="ybA-yP-x51" secondAttribute="centerX" id="nAL-Pq-odj"/>
+                            <constraint firstItem="6Ei-Lc-hsp" firstAttribute="top" secondItem="sGH-Fy-hfa" secondAttribute="bottom" id="tnt-MY-1u6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Gpl-t2-hcW"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2oU-P6-A9F"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="analysticsTableView" destination="Tck-wJ-54v" id="ibr-8r-WL2"/>
+                        <outlet property="liveNewsTableView" destination="sGH-Fy-hfa" id="rVA-bK-ms0"/>
+                        <segue destination="ih9-yq-blh" kind="show" identifier="ShowOneNews" id="zst-xY-L3K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TMl-vC-qDv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1071.0144927536232" y="119.86607142857142"/>
+        </scene>
+        <!--OneNews-->
+        <scene sceneID="rFQ-zt-PSJ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="OneNews" id="ih9-yq-blh" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="36O-Tx-u4O"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RVi-If-8q3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1729" y="110"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nyM-Ob-35k">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="E6l-8Y-lRQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="doc.plaintext" catalog="system" id="K6P-RE-wUu"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5ny-MG-RqC">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="XMl-af-2fw" kind="relationship" relationship="rootViewController" id="Uvc-KG-lBt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ec5-sI-6zO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="160.86956521739131" y="119.86607142857142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="doc.plaintext" catalog="system" width="56" height="64"/>
+    </resources>
+</document>

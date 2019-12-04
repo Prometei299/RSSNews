@@ -1,0 +1,24 @@
+platform :ios, '12.0'
+inhibit_all_warnings!
+
+target 'RSSNews' do
+  use_frameworks!
+
+  # Reactive
+  pod 'RxSwift'
+  pod 'RxCocoa'
+
+  # Data base
+  pod 'RealmSwift'
+
+  # UI
+  pod 'PKHUD'
+
+  # Common
+  pod 'R.swift'
+  pod 'SegueManager/R.swift'
+
+  # Network
+  pod 'Alamofire'
+
+end
