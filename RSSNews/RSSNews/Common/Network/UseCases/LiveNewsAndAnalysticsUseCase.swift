@@ -64,8 +64,8 @@ private extension LiveNewsAndAnalysticsUseCase {
     }
     
     func downloadData(input: Input) {
-        guard let rssItemService = self.rssItemService else { return }
-        guard let parser = self.parser else { return }
+        guard let rssItemService = self.rssItemService,
+              let parser = self.parser else { return }
         let channel = RSSChannel()
         
         parser.parseData(by: channel.liveNews) { items in
@@ -112,10 +112,10 @@ private extension LiveNewsAndAnalysticsUseCase {
     
     func getPaginationDataFromRealm(by key: String, paginationIndex: Int) -> [RSSItem] {
         guard let realm = realmService else { return [RSSItem]() }
-        let items = realm.getPaginationItems(by: key, paginationIndex: paginationIndex)
+        let paginationItems = realm.getPaginationItems(by: key, paginationIndex: paginationIndex)
         let allItems = realm.getAllItems(by: key)
         
-        guard allItems.count < paginationIndex else { return items }
+        guard allItems.count < paginationIndex else { return paginationItems }
         switch key {
         case NewsAndAnalysticsType.liveNews.rawValue:
             isEndLiveNews.accept(true)
@@ -125,7 +125,7 @@ private extension LiveNewsAndAnalysticsUseCase {
             break
         }
         
-        return items
+        return paginationItems
     }
     
     func saveDataInRealm(rssItems: [RSSItem], by key: String) {

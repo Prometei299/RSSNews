@@ -19,13 +19,13 @@ struct RSSItemService {
         
         for index in 0..<items.count {
             guard !itemsRealm.contains(items[index]) else { continue }
-            if itemsRealm.count == Constants.RealmConstants().recordsCount {
-                counter += 1
-                itemsRealm.remove(at: itemsRealm.count - counter)
+            guard itemsRealm.count == Constants.RealmConstants().recordsCount else {
                 itemsRealm.append(items[index])
-            } else {
-                itemsRealm.append(items[index])
+                continue
             }
+            counter += 1
+            itemsRealm.remove(at: itemsRealm.count - counter)
+            itemsRealm.append(items[index])
         }
         
         return self.getSortedItems(items: itemsRealm)
