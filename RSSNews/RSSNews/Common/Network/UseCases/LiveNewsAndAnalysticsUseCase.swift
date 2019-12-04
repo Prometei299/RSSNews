@@ -9,13 +9,8 @@
 import RxSwift
 import RxCocoa
 
-enum NewsAndAnalysticsType: String {
-    case liveNews
-    case analystics
-}
-
 struct LiveNewsAndAnalysticsUseCase {
-
+    
     private let liveNews = PublishRelay<[RSSItem]>()
     private let analystics = PublishRelay<[RSSItem]>()
     private let isEndLiveNews = PublishRelay<Bool>()
@@ -69,10 +64,10 @@ private extension LiveNewsAndAnalysticsUseCase {
         let channel = RSSChannel()
         
         parser.parseData(by: channel.liveNews) { items in
-            let sortedItems = rssItemService.getUpdatedAndSortedItemsArray(by: NewsAndAnalysticsType.liveNews.rawValue,
+            let sortedItems = rssItemService.getUpdatedAndSortedItemsArray(by: "liveNews",
                                                                            with: items)
-            self.saveDataInRealm(rssItems: sortedItems, by: NewsAndAnalysticsType.liveNews.rawValue)
-            let paginationItems = self.getPaginationDataFromRealm(by: NewsAndAnalysticsType.liveNews.rawValue,
+            self.saveDataInRealm(rssItems: sortedItems, by: "liveNews")
+            let paginationItems = self.getPaginationDataFromRealm(by: "liveNews",
                                                                   paginationIndex: Constants.RealmConstants().limitedGettingRecords - 1)
             self.liveNews.accept(paginationItems)
             DispatchQueue.main.async {
@@ -81,10 +76,10 @@ private extension LiveNewsAndAnalysticsUseCase {
         }
         
         parser.parseData(by: channel.analistycs) { items in
-            let sortedItems = rssItemService.getUpdatedAndSortedItemsArray(by: NewsAndAnalysticsType.analystics.rawValue,
+            let sortedItems = rssItemService.getUpdatedAndSortedItemsArray(by: "analystics",
                                                                            with: items)
-            self.saveDataInRealm(rssItems: sortedItems, by: NewsAndAnalysticsType.analystics.rawValue)
-            let paginationItems = self.getPaginationDataFromRealm(by: NewsAndAnalysticsType.analystics.rawValue,
+            self.saveDataInRealm(rssItems: sortedItems, by: "analystics")
+            let paginationItems = self.getPaginationDataFromRealm(by: "analystics",
                                                                   paginationIndex: Constants.RealmConstants().limitedGettingRecords - 1)
             self.analystics.accept(paginationItems)
         }
@@ -93,14 +88,14 @@ private extension LiveNewsAndAnalysticsUseCase {
     func drivePaginationIndex(input: Input) {
         input.paginationLiveNewsIndex.drive(onNext: { index in
             guard index != 0 else { return }
-            let paginationItems = self.getPaginationDataFromRealm(by: NewsAndAnalysticsType.liveNews.rawValue,
+            let paginationItems = self.getPaginationDataFromRealm(by: "liveNews",
                                                                   paginationIndex: index)
             self.liveNews.accept(paginationItems)
         }).disposed(by: bag)
         
         input.paginationAnalisticsIndex.drive(onNext: { index in
             guard index != 0 else { return }
-            let paginationItems = self.getPaginationDataFromRealm(by: NewsAndAnalysticsType.analystics.rawValue,
+            let paginationItems = self.getPaginationDataFromRealm(by: "analystics",
                                                                   paginationIndex: index)
             self.analystics.accept(paginationItems)
         }).disposed(by: bag)
@@ -117,9 +112,9 @@ private extension LiveNewsAndAnalysticsUseCase {
         
         guard allItems.count < paginationIndex else { return paginationItems }
         switch key {
-        case NewsAndAnalysticsType.liveNews.rawValue:
+        case "liveNews":
             isEndLiveNews.accept(true)
-        case NewsAndAnalysticsType.analystics.rawValue:
+        case "analystics":
             isEndAnalystics.accept(true)
         default:
             break
